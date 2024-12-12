@@ -1,9 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "isolatedModules": false
+    "isolatedModules": false,
+    "types": ["cypress"],
+    "target": "es2020",
+    "lib": ["es2020", "dom"]
   },
-  "include": [
-    "../node_modules/cypress"
-  ]
+  "include": ["../node_modules/cypress", "**/*.ts", "**/*.js"]
 }
