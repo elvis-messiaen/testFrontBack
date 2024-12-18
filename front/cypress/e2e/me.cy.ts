@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-describe('sessions list spec', () => {
+describe('sessions detail spec', () => {
   let token;
 
   before(() => {
@@ -12,7 +12,7 @@ describe('sessions list spec', () => {
     });
   });
 
-  it('sessions list successfull', () => {
+  it('should navigate to Account page successfully', () => {
     cy.visit('/sessions', {
       onBeforeLoad: (win) => {
         win.document.cookie = `auth_token=${token}`;
@@ -21,10 +21,15 @@ describe('sessions list spec', () => {
 
     cy.get('input[formControlName=email]').type('yoga@studio.com');
     cy.get('input[formControlName=password]').type('test!1234{enter}{enter}');
+
     cy.url().should('include', '/sessions');
+
+    cy.get('[data-cy="router-me"]').should('be.visible').click();
+
+    cy.url().should('include', '/me');
   });
 
-  it('sessions Create and redirect sucessfull', () => {
+  it('should account H1 is not empty', () => {
     cy.visit('/sessions', {
       onBeforeLoad: (win) => {
         win.document.cookie = `auth_token=${token}`;
@@ -33,13 +38,14 @@ describe('sessions list spec', () => {
 
     cy.get('input[formControlName=email]').type('yoga@studio.com');
     cy.get('input[formControlName=password]').type('test!1234{enter}{enter}');
-    cy.url().should('include', '/sessions');
 
-    cy.get('button[routerLink="create"]').should('be.visible').click();
-    cy.url().should('include', '/sessions/create');
+    cy.url().should('include', '/sessions');
+    cy.get('[data-cy="router-me"]').should('be.visible').click();
+    cy.url().should('include', '/me');
+    cy.get('h1').contains('User information').should('not.be.empty');
   });
 
-  it('should navigate to /sessions/update/:id when clicking on Edit button', () => {
+  it('should account admin is not empty', () => {
     cy.visit('/sessions', {
       onBeforeLoad: (win) => {
         win.document.cookie = `auth_token=${token}`;
@@ -48,23 +54,15 @@ describe('sessions list spec', () => {
 
     cy.get('input[formControlName=email]').type('yoga@studio.com');
     cy.get('input[formControlName=password]').type('test!1234{enter}{enter}');
-    cy.url().should('include', '/sessions');
 
-    cy.get('[data-cy="edit"]').each(($button) => {
-      cy.wrap($button)
-        .invoke('attr', 'routerLink')
-        .then((routerLink) => {
-          if (routerLink) {
-            const segments = routerLink.split('/');
-            const id = segments[segments.length - 1];
-            cy.wrap($button).click();
-            cy.url().should('include', `/sessions/update/${id}`);
-          }
-        });
-    });
+    cy.url().should('include', '/sessions');
+    cy.get('[data-cy="router-me"]').should('be.visible').click();
+    cy.url().should('include', '/me');
+
+    cy.get('[data-cy="name"]').should('not.be.empty');
   });
 
-  it('should navigate to /sessions/update/:id when clicking on Detail button', () => {
+  it('should  email is not empty', () => {
     cy.visit('/sessions', {
       onBeforeLoad: (win) => {
         win.document.cookie = `auth_token=${token}`;
@@ -75,10 +73,13 @@ describe('sessions list spec', () => {
     cy.get('input[formControlName=password]').type('test!1234{enter}{enter}');
 
     cy.url().should('include', '/sessions');
-    cy.get('mat-card').contains('Detail').should('be.visible').click();
+    cy.get('[data-cy="router-me"]').should('be.visible').click();
+    cy.url().should('include', '/me');
+
+    cy.get('[data-cy="email"]').should('not.be.empty');
   });
 
-  it('should form title is not empty', () => {
+  it('should  admin or not admin', () => {
     cy.visit('/sessions', {
       onBeforeLoad: (win) => {
         win.document.cookie = `auth_token=${token}`;
@@ -87,14 +88,15 @@ describe('sessions list spec', () => {
 
     cy.get('input[formControlName=email]').type('yoga@studio.com');
     cy.get('input[formControlName=password]').type('test!1234{enter}{enter}');
-    cy.url().should('include', '/sessions');
 
-    cy.get('mat-card').each(($el) => {
-      cy.wrap($el).find('mat-card-title').should('not.be.empty');
-    });
+    cy.url().should('include', '/sessions');
+    cy.get('[data-cy="router-me"]').should('be.visible').click();
+    cy.url().should('include', '/me');
+
+    cy.get('.my2').should('not.be.empty');
   });
 
-  it('should form subtitle is not empty', () => {
+  it('should  created is not empty', () => {
     cy.visit('/sessions', {
       onBeforeLoad: (win) => {
         win.document.cookie = `auth_token=${token}`;
@@ -103,14 +105,15 @@ describe('sessions list spec', () => {
 
     cy.get('input[formControlName=email]').type('yoga@studio.com');
     cy.get('input[formControlName=password]').type('test!1234{enter}{enter}');
-    cy.url().should('include', '/sessions');
 
-    cy.get('mat-card').each(($el) => {
-      cy.wrap($el).find('mat-card-subtitle').should('not.be.empty');
-    });
+    cy.url().should('include', '/sessions');
+    cy.get('[data-cy="router-me"]').should('be.visible').click();
+    cy.url().should('include', '/me');
+
+    cy.get('[data-cy="created"]').should('not.be.empty');
   });
 
-  it('should form image is not empty', () => {
+  it('should  updated is not empty', () => {
     cy.visit('/sessions', {
       onBeforeLoad: (win) => {
         win.document.cookie = `auth_token=${token}`;
@@ -119,14 +122,15 @@ describe('sessions list spec', () => {
 
     cy.get('input[formControlName=email]').type('yoga@studio.com');
     cy.get('input[formControlName=password]').type('test!1234{enter}{enter}');
-    cy.url().should('include', '/sessions');
 
-    cy.get('mat-card').each(($el) => {
-      cy.wrap($el).find('img.picture').should('exist');
-    });
+    cy.url().should('include', '/sessions');
+    cy.get('[data-cy="router-me"]').should('be.visible').click();
+    cy.url().should('include', '/me');
+
+    cy.get('[data-cy="updated"]').should('not.be.empty');
   });
 
-  it('should form image is not empty', () => {
+  it('should go back to the previous page when clicking the back button', () => {
     cy.visit('/sessions', {
       onBeforeLoad: (win) => {
         win.document.cookie = `auth_token=${token}`;
@@ -135,10 +139,13 @@ describe('sessions list spec', () => {
 
     cy.get('input[formControlName=email]').type('yoga@studio.com');
     cy.get('input[formControlName=password]').type('test!1234{enter}{enter}');
+
     cy.url().should('include', '/sessions');
 
-    cy.get('mat-card').each(($el) => {
-      cy.wrap($el).find('mat-card-content').should('exist');
-    });
+    cy.get('[data-cy="router-me"]').should('be.visible').click();
+    cy.url().should('include', '/me');
+
+    cy.get('button[mat-icon-button]').click();
+    cy.url().should('include', '/sessions');
   });
 });

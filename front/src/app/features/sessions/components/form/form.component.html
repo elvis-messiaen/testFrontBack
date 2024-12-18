@@ -29,11 +29,12 @@
           <mat-select
             ngDefaultControl
             formControlName="teacher_id"
-            data-cy="teacher-select"
+            id="teacher-select"
           >
             <mat-option
-              *ngFor="let teacher of teachers$ | async"
+              *ngFor="let teacher of teachers$ | async; let i = index"
               [value]="teacher.id"
+              [id]="'teacher-' + i"
               data-cy="teacher-option"
             >
               {{ teacher.firstName }} {{ teacher.lastName }}
