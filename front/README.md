@@ -20,30 +20,28 @@ Launch Front-end:
 
 > npm run start;
 
-
 ## Ressources
 
-### Mockoon env 
+### Mockoon env
 
 ### Postman collection
 
 For Postman import the collection
 
-> ressources/postman/yoga.postman_collection.json 
+> ressources/postman/yoga.postman_collection.json
 
-by following the documentation: 
+by following the documentation:
 
 https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-data-into-postman
-
 
 ### MySQL
 
 SQL script for creating the schema is available `ressources/sql/script.sql`
 
 By default the admin account is:
+
 - login: yoga@studio.com
 - password: test!1234
-
 
 ### Test
 
@@ -62,6 +60,10 @@ Report is available here:
 > front/coverage/lcov-report/index.html
 
 #### Unitary test
+
+installer faker
+
+> npm install @faker-js/faker --save-dev
 
 Launching test:
 

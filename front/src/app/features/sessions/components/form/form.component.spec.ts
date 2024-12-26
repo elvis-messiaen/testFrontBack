@@ -263,7 +263,7 @@ describe('FormComponent', () => {
     const session: Session = {
       id: faker.number.int(),
       name: 'Test Session',
-      date: new Date(), // Utilisation du type Date
+      date: new Date(),
       teacher_id: faker.number.int(),
       description: 'A test session description.',
       users: [faker.number.int(), faker.number.int()],
