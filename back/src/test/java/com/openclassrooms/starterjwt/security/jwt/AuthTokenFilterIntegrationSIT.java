@@ -26,7 +26,6 @@ public class AuthTokenFilterIntegrationSIT {
 
     @Test
     public void testAuthenticateUser_Success() throws Exception {
-        // Crée un utilisateur dans la base de données pour le test
         SignupRequest signupRequest = new SignupRequest();
         signupRequest.setEmail("test@example.com");
         signupRequest.setPassword("password");

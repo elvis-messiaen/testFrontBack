@@ -86,7 +86,7 @@ public class TeacherModelTest {
     @Test
     public void testInvalidTeacher_LastNameTooLong() {
         Teacher invalidTeacher = Teacher.builder()
-                .lastName("NomNomNomNomNomNomNomNomNomNom") // 21 characters, exceeding the max size of 20
+                .lastName("NomNomNomNomNomNomNomNomNomNom")
                 .firstName("Prenom")
                 .build();
 
@@ -99,7 +99,7 @@ public class TeacherModelTest {
     public void testInvalidTeacher_FirstNameTooLong() {
         Teacher invalidTeacher = Teacher.builder()
                 .lastName("Nom")
-                .firstName("PrenomPrenomPrenomPrenomPrenom") // 21 characters, exceeding the max size of 20
+                .firstName("PrenomPrenomPrenomPrenomPrenom")
                 .build();
 
         Set<ConstraintViolation<Teacher>> violations = validator.validate(invalidTeacher);

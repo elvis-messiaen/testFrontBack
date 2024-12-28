@@ -1,40 +1,67 @@
-# testFrontBack
+## testFront
 
-# Installation
+# prérequis:
 
-Pré-requis
-Java 8
-Docker
-Maven
-Installation des Dépendances
+> node.js
 
-.mvn clean install
+# installer faker
 
-## Installation de docker sur votre machine :
+> cd front/
+> npm install @faker-js/faker --save-dev
 
-https://docs.docker.com/get-docker/
+## tests Jest
 
-# Installation de Docker
+# dans le terminal du projet :
 
-## Windows
+> cd front/
 
-1. Téléchargez l'installateur de Docker Desktop depuis [Docker Hub](https://www.docker.com/products/docker-desktop).
-2. Suivez les instructions de l'installateur pour compléter l'installation.
-3. Redémarrez votre ordinateur si nécessaire.
-4. Lancez Docker Desktop depuis le menu Démarrer.
+# lancé les dépendance du projet :
 
-## MacOS
+> npm i
 
-1. Téléchargez Docker Desktop pour Mac depuis [Docker Hub](https://www.docker.com/products/docker-desktop).
-2. Ouvrez le fichier téléchargé et suivez les instructions pour déplacer Docker dans le dossier Applications.
-3. Lancez Docker depuis le dossier Applications.
-4. Suivez les instructions à l'écran pour terminer la configuration initiale.
+# lancement des test dans le terminal :
 
-## Linux
+> npm run test
 
-1. Suivez les instructions spécifiques à votre distribution Linux sur [la documentation Docker](https://docs.docker.com/engine/install/).
+# lancement des test coverage dans le terminal :
 
-## Vérification
+> npx jest --coverage
 
-Pour vérifier que Docker est correctement installé, ouvrez un terminal et tapez la commande suivante :
-docker --version
+# Ouvrire le rapport dans la page web :
+
+> open coverage/jest/lcov-report/index.html
+
+## tests cypress
+
+# lancement du backend
+
+> cd back/
+
+# pour les dépendances
+
+> mvn clean build
+> mvn spring-boot:run
+
+# lancement du frontend
+
+> ouvrez un autre terminal split
+> cd front/
+
+# Si vous avez pas déjà mi les dépendances :
+
+> npm i
+
+# dans le terminal :
+
+> cd front/
+> npx cypress open
+> une page s'ouvre cliquez sur E2E testing
+> Choisissez Chrome et start
+> Vous pouvez lancez les tests en cliquant par exemple sur login
+
+# coverage cypress
+
+dans le terminal :
+
+> npx cypress run test
+> npx cypress run --env coverage=true

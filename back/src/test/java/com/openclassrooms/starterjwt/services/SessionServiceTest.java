@@ -114,7 +114,7 @@ public class SessionServiceTest {
         user.setId(userId);
         Session session = new Session();
         session.setId(sessionId);
-        session.setUsers(new ArrayList<>()); // Utiliser ArrayList pour rendre modifiable
+        session.setUsers(new ArrayList<>());
 
         when(sessionRepository.findById(sessionId)).thenReturn(Optional.of(session));
         when(userRepository.findById(userId)).thenReturn(Optional.of(user));
@@ -134,7 +134,7 @@ public class SessionServiceTest {
         
         Session session = new Session();
         session.setId(sessionId);
-        session.setUsers(new ArrayList<>(Arrays.asList(user))); // Utiliser ArrayList pour rendre modifiable
+        session.setUsers(new ArrayList<>(Arrays.asList(user)));
         
         when(sessionRepository.findById(sessionId)).thenReturn(Optional.of(session));
         when(userRepository.findById(userId)).thenReturn(Optional.of(user));
@@ -152,7 +152,7 @@ public class SessionServiceTest {
         
         Session session = new Session();
         session.setId(sessionId);
-        session.setUsers(new ArrayList<>(Arrays.asList(user))); // Utiliser ArrayList pour rendre modifiable
+        session.setUsers(new ArrayList<>(Arrays.asList(user)));
         
         when(sessionRepository.findById(sessionId)).thenReturn(Optional.of(session));
         
@@ -168,7 +168,7 @@ public class SessionServiceTest {
         
         Session session = new Session();
         session.setId(sessionId);
-        session.setUsers(new ArrayList<>()); // Utiliser ArrayList pour rendre modifiable
+        session.setUsers(new ArrayList<>());
         
         when(sessionRepository.findById(sessionId)).thenReturn(Optional.of(session));
         
